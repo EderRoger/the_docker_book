@@ -89,3 +89,8 @@ The next instruction in the file is executed, and the process repeats until all
 
 instructions have been executed.
 
+# Run with volumes -v option
+
+sudo docker run -d -p 9091:80 --name website -v $PWD/website:/var/www/html/website ederrogersouza/nginx nginx
+
+
