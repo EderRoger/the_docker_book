@@ -93,4 +93,42 @@ instructions have been executed.
 
 sudo docker run -d -p 9091:80 --name website -v $PWD/website:/var/www/html/website ederrogersouza/nginx nginx
 
+Docker networking
 
+The docker0 interface is a virtual Ethernet bridge that connects our containers and
+
+the local host network.
+
+One end is plugged into the docker0 bridge, and the other end is plugged into the container.
+
+By binding every veth* interface to the docker0 bridge, Docker creates a virtual
+
+subnet shared between the host machine and every Docker container
+
+# command list iptables rules - sudo iptables -t nat -L -n
+
+# Links container.. powerfull
+
+sudo docker run -p 4567 --name webapp --link redis:db -t -i -v $PWD/webapp:/opt/webapp ederrogersouza/sinatra /bin/bash
+
+/etc/hosts file
+
+172.17.0.52	2e66ac7ed88c
+
+127.0.0.1	localhost
+
+172.17.0.51	db aca4724d3f19 redis
+
+172.17.0.52	webapp.bridge
+
+172.17.0.51	redis
+
+172.17.0.51	redis.bridge
+
+172.17.0.41	website
+
+172.17.0.41	website.bridge
+
+172.17.0.52	webapp
+
+You can ping on db ... from the webapp machine.. this is alwesome.. :)
