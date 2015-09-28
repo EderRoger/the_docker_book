@@ -132,3 +132,8 @@ sudo docker run -p 4567 --name webapp --link redis:db -t -i -v $PWD/webapp:/opt/
 172.17.0.52	webapp
 
 You can ping on db ... from the webapp machine.. this is alwesome.. :)
+
+# Docker orchestration
+Compose - write in Phyton
+Consul - write in Go
+Swarm - write in Go
