@@ -4,8 +4,8 @@ web:
   ports:
    - "5000:5000"
   volumes:
-    - .:/composeapp
+   - .:/composeapp
   links:
    - redis
-  redis:
-    image: redis
+redis:
+  image: redis
