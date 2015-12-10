@@ -1,0 +1,28 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = "ansible_docker"
+
+  config.vm.define :smoker do |web_config|
+    web_config.vm.network :private_network, :ip => "10.0.0.125"
+    web_config.vm.hostname = "smoker"
+
+    web_config.vm.provision :ansible do |ansible|
+      ansible.playbook = "provisioning/server.yml"
+      ansible.verbose = "vvv"
+    end
+  end
+
+  config.vm.define :joker do |web_config|
+    web_config.vm.network :private_network, :ip => "10.0.0.135"
+    web_config.vm.hostname = "joker"
+
+    web_config.vm.provision :ansible do |ansible|
+      ansible.playbook = "provisioning/server.yml"
+      ansible.verbose = "vvv"
+    end
+  end
+end
