@@ -25,4 +25,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       ansible.verbose = "vvv"
     end
   end
+
+  config.vm.define :swarm do |web_config|
+    web_config.vm.network :private_network, :ip => "10.0.0.145"
+    web_config.vm.hostname = "swarm"
+    web_config.vm.network "forwarded_port", guest: 2376, host: 2376
+    web_config.vm.network "forwarded_port", guest: 2375, host: 2375
+
+    web_config.vm.provision :ansible do |ansible|
+      ansible.playbook = "provisioning/server.yml"
+      ansible.verbose = "vvv"
+    end
+  end
 end
