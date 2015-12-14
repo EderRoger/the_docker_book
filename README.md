@@ -140,6 +140,8 @@ Swarm - write in Go
 
 # Swarm and Consul
 
+Testing swarm with consul discovering
+
 # TLS Support
 
 # Docker Daemon
