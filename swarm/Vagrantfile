@@ -26,7 +26,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
   end
 
-  config.vm.define :consul do |web_config|
+  config.vm.define :manager do |web_config|
     web_config.vm.network :private_network, :ip => "10.0.0.145"
     web_config.vm.hostname = "manager"
     web_config.vm.network "forwarded_port", guest: 2376, host: 2376
